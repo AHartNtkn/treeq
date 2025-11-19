@@ -50,4 +50,4 @@ The workspace displays the current **Sequent** (Hypotheses and Goal).
 1.  **Jay, B.** *The Tree Calculus*.
 2.  **Jay, B.** *Reflective Programs in Tree Calculus*.
 3.  **Tree Calculus Specification**. Retrieved from https://treecalcul.us/specification/
-4.  **CycleQ**: Cyclic equational reasoning.
+4.  **CycleQ**: *An Efficient Basis for Cyclic Equational Reasoning*. (Provides the foundation for the cyclic proof structure used in this tool).
