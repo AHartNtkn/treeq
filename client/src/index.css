@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components {
+  .tactic-btn {
+    @apply bg-blue-700 hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed px-3 py-2 rounded text-sm text-white transition-colors;
+  }
+}
