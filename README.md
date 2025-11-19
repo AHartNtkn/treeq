@@ -1,40 +1,37 @@
-# TreeQ: A Proof Assistant for Tree Calculus
+# TreeQ: Tree Calculus Proof Assistant
 
-TreeQ is an interactive, web-based proof assistant designed for exploring and proving theorems in **Tree Calculus**, a minimal and reflective computational model discovered by Barry Jay.
+TreeQ is a web-based proof assistant for exploring and proving theorems in **Tree Calculus**, a minimal computational model discovered by Barry Jay. It provides an interactive environment for constructing formulas, defining terms, and building cyclic proofs using a sequent calculus approach.
 
-![TreeQ Screenshot](https://via.placeholder.com/800x450?text=TreeQ+Screenshot+Coming+Soon)
+## Overview
 
-## 🌟 Features
+This tool implements the reduction rules of Tree Calculus and wraps them in a graphical interface that allows for:
+*   **Formula Construction**: Building tree structures (Leaves, Applications, Variables) visually.
+*   **Proof Management**: Managing conjectures, definitions, and theorems in a persistent local library.
+*   **Interactive Proving**: Applying tactics such as Reduction, Symmetry, Transitivity, and Case Split to prove goals.
+*   **Cyclic Proofs**: utilizing induction via cycle detection in the proof tree.
 
-*   **Visual Formula Builder**: Construct complex tree structures (Leaves, Applications, Variables) using an intuitive point-and-click interface.
-*   **Interactive Proof Workspace**:
-    *   **Goal-Oriented Proving**: Break down goals into subgoals using a sequent calculus approach.
-    *   **Tactics**: Use built-in tactics like **Reduction**, **Symmetry**, **Transitivity**, and **Case Split**.
-    *   **Induction**: Supports cyclic proofs (induction) by detecting matching ancestors in the proof tree.
-*   **Definition Management**: Define reusable terms (like combinators `I`, `K`, `S`) and unfold them in your proofs.
-*   **Library System**: Manage your theorems and conjectures.
-    *   **Import/Export**: Save your library to a JSON file to persist your work or share it with others.
-    *   **Persistence**: Your work is automatically saved to your browser's local storage.
-*   **Correctness**: Implements the standard **Tree Calculus** reduction rules (Rules 1-5) as specified in the literature.
+## Tree Calculus Rules
 
-## 🌲 Tree Calculus Rules
+The core logic implements the following reduction rules, where `△` represents a Leaf and juxtaposition `x y` represents Application:
 
-TreeQ implements the following reduction rules (where `△` is a Leaf and `x y` is Application):
-
-1.  `△ △ y z ⟶ y` (K-rule behavior)
-2.  `△ (△ x) y z ⟶ x z (y z)` (S-like behavior)
+1.  `△ △ y z ⟶ y`
+2.  `△ (△ x) y z ⟶ x z (y z)`
 3.  `△ (△ w x) y △ ⟶ w`
 4.  `△ (△ w x) y (△ u) ⟶ x u`
 5.  `△ (△ w x) y (△ u v) ⟶ y u v`
 
-## 🚀 Getting Started
+These rules are based on the specification found at [treecalcul.us](https://treecalcul.us/specification/).
+
+## Installation and Usage
+
+TreeQ is a client-side Single Page Application (SPA) built with React and TypeScript.
 
 ### Prerequisites
 
-*   **Node.js** (v18 or higher recommended)
-*   **npm**
+*   Node.js (v18+)
+*   npm
 
-### Installation
+### Setup
 
 1.  Clone the repository:
     ```bash
@@ -42,41 +39,32 @@ TreeQ implements the following reduction rules (where `△` is a Leaf and `x y` 
     cd treeq
     ```
 
-2.  Install dependencies (from the root directory):
+2.  Install dependencies:
     ```bash
     npm install
     ```
 
-### Running the App
-
-1.  Start the development server:
+3.  Start the development server:
     ```bash
     cd client
     npm run dev
     ```
 
-2.  Open your browser and navigate to the URL shown (usually `http://localhost:5173`).
+4.  Access the application in your browser at the URL provided (typically `http://localhost:5173`).
 
-## 🛠️ Architecture
+## Citations and Inspiration
 
-TreeQ is a **Client-Only** Single Page Application (SPA).
+This project is directly inspired by and based on the work of:
 
-*   **Frontend**: React, Vite, Tailwind CSS.
-*   **State**: Managed locally in memory and persisted to `localStorage`.
-*   **Shared Logic**: The core Tree Calculus logic (types, reduction rules, unification) resides in a shared module used by the client.
+*   **Barry Jay**: For the discovery and development of *Tree Calculus* and *Pattern Calculus*.
+    *   *The Tree Calculus* (Barry Jay)
+    *   *Reflective Programs in Tree Calculus* (Barry Jay)
+*   **CycleQ**: An efficient basis for cyclic equational reasoning, which inspired the proof structure.
+*   **Treecalcul.us**: For the specific reduction rules specification used in this implementation.
 
-## 📚 built-in Demo
+## Architecture
 
-The application comes with a pre-loaded library containing:
-*   **Definitions**: `I`, `K`, `False`.
-*   **Theorems**: Proofs for `K Reduction`, `False Reduction`, and `Identity`.
+The project is structured as a monorepo with a shared core library and a React frontend.
 
-You can reset the library by clearing your browser's Local Storage for the site.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please fork the repository and submit a Pull Request.
-
-## 📄 License
-
-[MIT](LICENSE)
+*   `shared/`: Contains the TypeScript implementation of the Tree Calculus data structures, reduction rules, and unification logic.
+*   `client/`: Contains the React application, including the visual formula builder, proof state management, and library interface.
